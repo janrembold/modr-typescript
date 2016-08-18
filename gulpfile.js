@@ -1,7 +1,10 @@
 var gulp = require('gulp');
 var ts = require('gulp-typescript');
+var connect = require('gulp-connect');
 
-gulp.task('default', function () {
+gulp.task('default', ['typescript']);
+
+gulp.task('typescript', function () {
     return gulp.src('src/js/**/*.ts')
         .pipe(ts({
             noImplicitAny: false,
@@ -11,4 +14,8 @@ gulp.task('default', function () {
             target: 'ES5'
         }))
         .pipe(gulp.dest('dist/js'));
+});
+
+gulp.task('serve', function() {
+    connect.server();
 });
