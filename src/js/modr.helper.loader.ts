@@ -5,17 +5,13 @@ namespace Modr.Helper {
 
         public static basePath: string = '';
 
-        public static load(url: string, ns: string, plugin: string) {
-            if(!(Modr[ns] && Modr[ns][plugin])) {
-                $.ajax({
-                    url: this.basePath + url,
-                    dataType: 'script',
-                    cache: true,
-                    async: false
-                });
-            }
-
-            return Modr[ns][plugin];
+        public static load(url: string) : void {
+            $.ajax({
+                url: this.basePath + url,
+                dataType: 'script',
+                cache: true,
+                async: false
+            });
         }
 
     }

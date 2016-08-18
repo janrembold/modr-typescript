@@ -3,6 +3,9 @@
 
 namespace Modr.MyPlugin {
     export class Module implements ModrPlugin {
+
+        _defaults = {};
+
         constructor() {
             console.log('constructor Modr:MyPlugin:Module');
         }

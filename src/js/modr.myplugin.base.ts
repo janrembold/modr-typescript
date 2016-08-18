@@ -5,14 +5,22 @@
 namespace Modr.MyPlugin {
     export class Base implements ModrPlugin {
 
-        init = () => {
-            console.log('init Modr:MyPlugin');
-            Modr.Core.getClass('MyPlugin', 'Module');
+        _defaults = {
+            param1: 'default params1'
+        };
 
-            let mod = new Modr.MyPlugin.Module();
-            mod.init();
+        constructor() {
+            console.log('Base constructor');
         }
 
-        destroy = () => {}
+        public init() : void {
+            console.log('init Modr:MyPlugin');
+            // Modr.Core.getClass('MyPlugin', 'Module');
+            //
+            // let mod = new Modr.MyPlugin.Module();
+            // mod.init();
+        }
+
+        public destroy() : void {}
     }
 }
