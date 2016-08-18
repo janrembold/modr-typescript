@@ -1,9 +1,9 @@
 ///<reference path="../declaration/jquery.d.ts" />
-///<reference path="ModrPlugin.ts"/>
+///<reference path="modr.interface.jqueryplugin.ts"/>
 ///<reference path="modr.core.ts"/>
 
 namespace Modr.MyPlugin {
-    export class Base implements ModrPlugin {
+    export class Base implements Modr.Interface.JQueryPlugin {
 
         _defaults = {
             param1: 'default params1'
