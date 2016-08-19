@@ -5,8 +5,9 @@ namespace Modr.Helper {
 
         public static basePath: string = '';
 
-        public static load(url: string) : void {
-            $.ajax({
+        public static load(config:Modr.Interface.LoaderConfig) : JQueryXHR {
+
+            return $.ajax({
                 url: this.basePath + url,
                 dataType: 'script',
                 cache: true,

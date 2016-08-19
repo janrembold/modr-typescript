@@ -20,7 +20,9 @@ namespace Modr {
             // get class from cache or load it
             if (!pluginConfig.isClassLoaded()) {
                 // conditional load plugin
-                Modr.Helper.Loader.load(pluginConfig.getFileName());
+                Modr.Helper.Loader.load([{
+                    file: pluginConfig.getFileName()
+                }]);
             }
 
             // extend and bind plugin to element, prevent multiple instantiation
@@ -34,6 +36,11 @@ namespace Modr {
                 // bind plugin to element
                 $element.data(pluginConfig.getPluginName(), plugin);
             }
+        }
+
+        // get
+        public static getPlugin():any {
+
         }
 
     }
@@ -51,14 +58,14 @@ namespace Modr {
             self._options = options;
         }
 
-        // public getNamespace() : string {
-        //     return this._namespace;
-        // }
-        //
-        // public getClassName() : string {
-        //     return this._className;
-        // }
-        //
+        public getNamespace() : string {
+            return this._namespace;
+        }
+
+        public getClassName() : string {
+            return this._className;
+        }
+
         // public getOptions() : Object {
         //     return this._options;
         // }
@@ -82,15 +89,21 @@ namespace Modr {
                 // inject jquery boilerplate defaults
                 $.extend(Modr[self._namespace][self._className].prototype, {
                     _$el: $element,
-                    __modrExtend: function () {
+                    _modrExtend: function () {
                         // extend defaults with component options
                         this._options = $.extend({}, this._options, options);
                     }
+                    // _modrLoad: function(config:Object) {
+                    //     if (!self.isClassLoaded()) {
+                    //         // conditional load plugin
+                    //         Modr.Helper.Loader.load(self.getFileName());
+                    //     }
+                    // }
                 });
 
                 // instantiate modr plugin and init/extend boilerplate
                 let myInstance = new Modr[self._namespace][self._className]($element, options);
-                myInstance.__modrExtend();
+                myInstance._modrExtend();
 
                 // return instantiated and extended plugin
                 return myInstance;

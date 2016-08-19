@@ -1,6 +1,6 @@
 ///<reference path="../declaration/jquery.d.ts" />
 ///<reference path="modr.interface.jqueryplugin.ts"/>
-///<reference path="modr.core.ts"/>
+///<reference path="modr.interface.loaderconfig.ts"/>
 
 namespace Modr.MyPlugin {
     export class Base implements Modr.Interface.JQueryPlugin {
@@ -18,12 +18,29 @@ namespace Modr.MyPlugin {
             console.log('init Modr:MyPlugin');
             console.log(this._options.param1);
 
-            this._$el.html('Plugin Base loaded');
+            let self = this;
+            self._$el.html('Plugin Base loaded');
 
-            // Modr.Core.getClass('MyPlugin', 'Module');
-            //
-            // let mod = new Modr.MyPlugin.Module();
-            // mod.init();
+            // conditional load optional modules
+            if(self._$el.data('option1') === 'dots') {
+
+                let config : Modr.Interface.LoaderConfig = [
+                    { ns: 'MyPlugin', pluginName: 'Module' },
+                    { ns: 'Helper', pluginName: 'Events' },
+                    { file: 'bower_components/3rdpartylib/main.js' }
+                ];
+
+                // let config:Modr.Interface.LoaderConfig = [
+                //     {'MyPlugin': 'Module'},
+                //     {'Helper': 'Events'},
+                //     'bower_components/3rdpartylib/main.js'
+                // ];
+
+                Modr.Helper.Loader.load([{
+                    ns: 'MyPlugin',
+                    pluginName: 'Module'
+                }]);
+            }
         }
 
         /**
