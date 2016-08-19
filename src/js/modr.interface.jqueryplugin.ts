@@ -1,6 +1,7 @@
 namespace Modr.Interface {
     export interface JQueryPlugin {
-        _defaults : Object;
+        _options: Object;
+        _$el: JQuery;
 
         init() : void;
         destroy() : void;

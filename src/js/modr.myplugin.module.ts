@@ -4,16 +4,19 @@
 namespace Modr.MyPlugin {
     export class Module implements Modr.Interface.JQueryPlugin {
 
-        _defaults = {};
+        public _$el;
+        public _options = {};
 
         constructor() {
             console.log('constructor Modr:MyPlugin:Module');
         }
 
-        init = () => {
+        public init() : void {
             console.log('init Modr:MyPlugin:Module');
         }
 
-        destroy = () => {}
+        public destroy() : void {
+            console.log('destroy Modr:MyPlugin:Module');
+        }
     }
 }
