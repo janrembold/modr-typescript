@@ -27,7 +27,15 @@ namespace Modr.MyPlugin {
                 let config : Modr.Interface.LoaderConfig = [
                     { ns: 'MyPlugin', pluginName: 'Module' },
                     { ns: 'Helper', pluginName: 'Events' },
+                    { file: 'modr.myplugin.main.css' },
                     { file: 'bower_components/3rdpartylib/main.js' }
+                ];
+
+                let config2 = [
+                    'MyPlugin:Module',
+                    'Helper:Events',
+                    'modr.myplugin.main.css',
+                    'bower_components/3rdpartylib/main.js'
                 ];
 
                 // let config:Modr.Interface.LoaderConfig = [
