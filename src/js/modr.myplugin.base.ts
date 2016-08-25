@@ -25,18 +25,19 @@ namespace Modr.MyPlugin {
             if(self._$el.data('option1') === 'dots') {
 
                 let config : Modr.Interface.LoaderConfig = [
-                    { ns: 'MyPlugin', pluginName: 'Module' },
-                    { ns: 'Helper', pluginName: 'Events' },
+                    { ns: 'MyPlugin', mod: 'Module' },
+                    { ns: 'Helper', mod: 'Events' },
+                    { ns: 'Polyfill', mod: 'Something', test: function() { return true; } },
                     { file: 'modr.myplugin.main.css' },
                     { file: 'bower_components/3rdpartylib/main.js' }
                 ];
 
-                let config2 = [
-                    'MyPlugin:Module',
-                    'Helper:Events',
-                    'modr.myplugin.main.css',
-                    'bower_components/3rdpartylib/main.js'
-                ];
+                // let config2 = [
+                //     'MyPlugin:Module',
+                //     'Helper:Events',
+                //     'modr.myplugin.main.css',
+                //     'bower_components/3rdpartylib/main.js'
+                // ];
 
                 // let config:Modr.Interface.LoaderConfig = [
                 //     {'MyPlugin': 'Module'},
@@ -44,10 +45,7 @@ namespace Modr.MyPlugin {
                 //     'bower_components/3rdpartylib/main.js'
                 // ];
 
-                Modr.Helper.Loader.load([{
-                    ns: 'MyPlugin',
-                    pluginName: 'Module'
-                }]);
+                Modr.Helper.Loader.load(config);
             }
         }
 
