@@ -31,27 +31,31 @@
         NOT Loading modr plugin: MyPlugin:Base, because of test pattern
     </div>
 
-    <div class="custom container container--legacy" data-modr data-resources='[{"paths":["jquery.boilerplate.js"], "base": "vendor/"}, {"paths":["custom.css"], "base": "vendor/"}]' data-init="(function($elm) { $elm.boilerplate(); })">
+    <div class="custom container container--legacy" data-resources='[{"paths":["jquery.boilerplate.js"], "base": "vendor/"}, {"paths":["custom.css"], "base": "vendor/"}]' data-init="(function($elm) { $elm.boilerplate(); })">
         Loading legacy plugin: vendor/jquery.boilerplate.js
     </div>
 
     <div class="container">
         <h3>Offene Punkte</h3>
         <ul>
-            <li>Erlauben wir ausschließlich valide JSON-formate in den data Attributen? <a href="http://stackoverflow.com/questions/8542746/store-json-object-in-data-attribute-in-html-jquery">Siehe hier</a></li>
+            <li>...</li>
         </ul>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
-    <script src="dist/js/modr.helper.loader.js"></script>
-    <script src="dist/js/modr.myplugin.base.js"></script>
+    <script src="dist/js/modr.loader.js"></script>
+    <!-- <script src="dist/js/modr.myplugin.base.js"></script> -->
 
     <script>
-        Modr.Helper.Loader.base = 'dist/js/';
-        Modr.Helper.Loader.initPlugins();
-//        $('[data-modr]').each(function() {
-//            Modr.Core.initPlugin( $(this) );
-//        });
+        Modr.Loader.base = 'dist/js/';
+
+        // load all elements with data-modr attribute
+        Modr.Loader.initPlugins();
+
+        // init specific plugin
+        $('.custom').each(function() {
+            Modr.Loader.initPlugin( $(this) );
+        });
     </script>
 </body>
 </html>
