@@ -16,6 +16,10 @@ gulp.task('typescript', function () {
         .pipe(gulp.dest('dist/js'));
 });
 
+gulp.task('watch', function() {
+    gulp.watch('src/js/**/*.ts', ['typescript']);
+});
+
 gulp.task('serve', function() {
     connect.server();
 });

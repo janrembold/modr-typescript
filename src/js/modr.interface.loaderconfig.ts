@@ -1,5 +1,11 @@
 namespace Modr.Interface {
-    export interface LoaderConfig {
-        [index: number]: { ns: string; mod: string; test?: () => boolean } | { file: string; test?: () => boolean };
+    interface LoaderConfigDefault {
+        init?: () => void;
+        test?: () => boolean;
+        options?: Object;
+    }
+
+    export interface LoaderConfig extends LoaderConfigDefault {
+        paths: Array<string>;
     }
 }

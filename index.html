@@ -3,26 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        .container {
+            margin: 0 0 20px;
+            padding: 10px;
+        }
+
+        .container--modr {
+            background-color: lightblue;
+        }
+
+        .container--legacy {
+            background-color: lightcoral;
+        }
+    </style>
 </head>
 <body>
-    <div class="container" data-modr data-file="dist/modr.myplugin.base.js" data-namespace="MyPlugin" data-plugin="Base">
-        Loading v1...
+    <div class="container container--modr" data-modr data-name="MyPlugin" data-mod="Base">
+        Loading modr plugin: MyPlugin:Base
     </div>
 
-    <div class="container" data-modr data-file="dist/modr.myplugin.base.js" data-namespace="MyPlugin" data-plugin="Base">
-        Loading v2...
+    <div class="container container--modr" data-modr data-name="MyPlugin" data-mod="Base" data-options='{"foo":"baz","quote":"text with \"quotes\""}'>
+        Loading modr plugin: MyPlugin:Base with foo: baz
+    </div>
+
+    <div class="container container--modr" data-modr data-name="MyPlugin" data-mod="Base" data-test="(function(){return false;})">
+        NOT Loading modr plugin: MyPlugin:Base, because of test pattern
+    </div>
+
+    <div class="custom container container--legacy" data-modr data-resources='[{"paths":["jquery.boilerplate.js"], "base": "vendor/"}, {"paths":["custom.css"], "base": "vendor/"}]' data-init="(function($elm) { $elm.boilerplate(); })">
+        Loading legacy plugin: vendor/jquery.boilerplate.js
+    </div>
+
+    <div class="container">
+        <h3>Offene Punkte</h3>
+        <ul>
+            <li>Erlauben wir ausschließlich valide JSON-formate in den data Attributen? <a href="http://stackoverflow.com/questions/8542746/store-json-object-in-data-attribute-in-html-jquery">Siehe hier</a></li>
+        </ul>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
-    <script src="dist/js/modr.core.js"></script>
     <script src="dist/js/modr.helper.loader.js"></script>
-    <!--
     <script src="dist/js/modr.myplugin.base.js"></script>
-    <script src="dist/js/modr.myplugin.module.js"></script>
-    -->
+
     <script>
-        Modr.Helper.Loader.basePath = 'dist/js/';
-        Modr.Core.initPlugins();
+        Modr.Helper.Loader.base = 'dist/js/';
+        Modr.Helper.Loader.initPlugins();
+//        $('[data-modr]').each(function() {
+//            Modr.Core.initPlugin( $(this) );
+//        });
     </script>
 </body>
 </html>
