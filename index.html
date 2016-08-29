@@ -28,11 +28,15 @@
     </div>
 
     <div class="container container--modr" data-modr data-name="MyPlugin" data-mod="Base" data-test="(function(){return false;})">
-        NOT Loading modr plugin: MyPlugin:Base, because of test pattern
+        NOT loading modr plugin: MyPlugin:Base, because of test pattern
     </div>
 
     <div class="custom container container--legacy" data-resources='[{"paths":["jquery.boilerplate.js"], "base": "vendor/"}, {"paths":["custom.css"], "base": "vendor/"}]' data-init="(function($elm) { $elm.boilerplate(); })">
         Loading legacy plugin: vendor/jquery.boilerplate.js
+    </div>
+
+    <div class="custom container container--legacy" data-test="(function(){return false;})" data-resources='[{"paths":["jquery.boilerplate.js"], "base": "vendor/"}, {"paths":["custom.css"], "base": "vendor/"}]' data-init="(function($elm) { $elm.boilerplate(); })">
+        NOT loading legacy plugin: vendor/jquery.boilerplate.js
     </div>
 
     <div class="container">

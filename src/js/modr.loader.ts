@@ -108,6 +108,11 @@ namespace Modr {
                 }
             }
 
+            // add optional test function
+            if($element.data('test')) {
+                config.test = eval($element.attr('data-test'));
+            }
+
             return config;
         }
 
