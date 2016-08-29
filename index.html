@@ -19,16 +19,20 @@
     </style>
 </head>
 <body>
-    <div class="container container--modr" data-modr data-name="MyPlugin" data-mod="Base">
+    <div class="container container--modr" data-resources='[{"paths":["modr.myplugin.base.js"]}]' data-modr='[{"name": "MyPlugin", "module": "Base"}]'>
         Loading modr plugin: MyPlugin:Base
     </div>
 
-    <div class="container container--modr" data-modr data-name="MyPlugin" data-mod="Base" data-options='{"foo":"baz","quote":"text with \"quotes\""}'>
+    <div class="container container--modr" data-resources='[{"paths":["modr.myplugin.base.js"]}]' data-modr='[{"name": "MyPlugin", "module": "Base"}]' data-options='{"foo":"baz","quote":"text with \"quotes\""}'>
         Loading modr plugin: MyPlugin:Base with foo: baz
     </div>
 
-    <div class="container container--modr" data-modr data-name="MyPlugin" data-mod="Base" data-test="(function(){return false;})">
-        NOT loading modr plugin: MyPlugin:Base, because of test pattern
+    <div class="container container--modr" data-resources='[{"paths":["modr.myplugin.base.js"], "base": "dist/js/"}]' data-modr='[{"name": "MyPlugin", "module": "Base"}]'>
+        Loading modr plugin: MyPlugin:Base with custom base path
+    </div>
+
+    <div class="container container--modr" data-resources='[{"paths":["modr.myplugin.polyfill.js"]}]' data-modr='[{"name": "MyPlugin", "module": "Polyfill"}]' data-test="(function(){return false;})">
+        NOT loading modr plugin: MyPlugin:Polyfill, because of test pattern
     </div>
 
     <div class="custom container container--legacy" data-resources='[{"paths":["jquery.boilerplate.js"], "base": "vendor/"}, {"paths":["custom.css"], "base": "vendor/"}]' data-init="(function($elm) { $elm.boilerplate(); })">
@@ -37,13 +41,6 @@
 
     <div class="custom container container--legacy" data-test="(function(){return false;})" data-resources='[{"paths":["jquery.boilerplate.js"], "base": "vendor/"}, {"paths":["custom.css"], "base": "vendor/"}]' data-init="(function($elm) { $elm.boilerplate(); })">
         NOT loading legacy plugin: vendor/jquery.boilerplate.js
-    </div>
-
-    <div class="container">
-        <h3>Offene Punkte</h3>
-        <ul>
-            <li>...</li>
-        </ul>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>

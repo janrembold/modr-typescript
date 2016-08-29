@@ -13,6 +13,9 @@ namespace Modr.MyPlugin {
 
         public init() : void {
             console.log('init Modr:MyPlugin:Module');
+
+            let self = this;
+            self._$el.append(' => Launched mod');
         }
 
         public destroy() : void {

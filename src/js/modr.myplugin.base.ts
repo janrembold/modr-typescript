@@ -11,14 +11,43 @@ namespace Modr.MyPlugin {
         };
 
         public _dependencies = {
-            variation1: [
-                { name: 'MyPlugin', mod: 'Module' },
-                { name: 'Helper', mod: 'Events' },
-                { name: 'Polyfill', mod: 'Something', test: function() { return true; } },
-                { name: 'Polyfill', mod: 'SomethingElse', test: function() { return false; } },
-                { resources: ['modr.myplugin.main.css'] },
-                { resources: ['bower_components/3rdpartylib/main.js'] }
-            ]
+            full: {
+
+                resources: [
+                    {
+                        paths: [
+                            'modr.myplugin.module.css',
+                            'modr.myplugin.module2.css'
+                        ],
+                        base: '/cdn/v1.2/'
+                    },
+                    {
+                        paths: [
+                            'modr.myplugin.module.js',
+                            'boiler.js'
+                        ]
+                    }
+                ],
+                modr: [
+                    { name: 'MyPlugin', module: 'Module' }
+                ],
+                init: function($element?: JQuery) { console.log('do something'); },
+                test: function() { return true }
+            },
+
+            mod: {
+
+                resources: [
+                    {
+                        paths: [ 'modr.myplugin.module.js' ]
+                    }
+                ],
+                modr: [
+                    { name: 'MyPlugin', module: 'Module' }
+                ],
+                init: function($element?: JQuery) { console.log('do something'); },
+                test: function() { return true; }
+            }
         };
 
         /**
@@ -28,30 +57,7 @@ namespace Modr.MyPlugin {
             let self = this;
             self._$el.append(' => Done - Option "foo" = "' + this._options.foo + '"');
 
-            Modr.Loader.load({
-                paths: ['dist/js/modr.myplugin.module.js']
-            });
-
-            // conditional load optional modules
-            // if(self._$el.data('option1') === 'dots') {
-            //
-            //     let config : Modr.Interface.LoaderConfig = ;
-            //
-            //     // let config2 = [
-            //     //     'MyPlugin:Module',
-            //     //     'Helper:Events',
-            //     //     'modr.myplugin.main.css',
-            //     //     'bower_components/3rdpartylib/main.js'
-            //     // ];
-            //
-            //     // let config:Modr.Interface.LoaderConfig = [
-            //     //     {'MyPlugin': 'Module'},
-            //     //     {'Helper': 'Events'},
-            //     //     'bower_components/3rdpartylib/main.js'
-            //     // ];
-            //
-            //     Modr.Helper.Loader.load(config);
-            // }
+            Modr.Loader.load(self._dependencies.mod, self._$el);
         }
 
         /**
