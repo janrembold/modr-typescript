@@ -19,43 +19,56 @@
     </style>
 </head>
 <body>
-    <div class="container container--modr" data-resources='[{"paths":["modr.myplugin.base.js"]}]' data-modr='[{"name": "MyPlugin", "module": "Base"}]'>
-        Loading modr plugin: MyPlugin:Base
+    <div class="container container--modr" data-resources='[{"paths":["modr.demo.base.js"]}]' data-modr='[{"name": "Demo", "module": "Base"}]'>
+        Loading modr plugin: Demo:Base
     </div>
 
-    <div class="container container--modr" data-resources='[{"paths":["modr.myplugin.base.js"]}]' data-modr='[{"name": "MyPlugin", "module": "Base"}]' data-options='{"foo":"baz","quote":"text with \"quotes\""}'>
-        Loading modr plugin: MyPlugin:Base with foo: baz
+    <div class="container container--modr" data-resources='[{"paths":["modr.demo.base.js"]}]' data-modr='[{"name": "Demo", "module": "Base"}]' data-options='{"foo":"baz","quote":"text with \"quotes\""}'>
+        Loading modr plugin: Demo:Base with foo: baz
     </div>
 
-    <div class="container container--modr" data-resources='[{"paths":["modr.myplugin.base.js"], "base": "dist/js/"}]' data-modr='[{"name": "MyPlugin", "module": "Base"}]'>
-        Loading modr plugin: MyPlugin:Base with custom base path
+    <div class="container container--modr" data-resources='[{"paths":["modr.demo.base.js"], "base": "dist/js"}]' data-modr='[{"name": "Demo", "module": "Base"}]'>
+        Loading modr plugin: Demo:Base with custom base path
     </div>
 
-    <div class="container container--modr" data-resources='[{"paths":["modr.myplugin.polyfill.js"]}]' data-modr='[{"name": "MyPlugin", "module": "Polyfill"}]' data-test="(function(){return false;})">
-        NOT loading modr plugin: MyPlugin:Polyfill, because of test pattern
+	<div class="container container--modr" data-resources='[{"paths":["modr.demo.base.js"], "base": "##distjs"}]' data-modr='[{"name": "Demo", "module": "Base"}]'>
+		Loading modr plugin: Demo:Base with baseMap "##distjs"
+	</div>
+
+    <div class="container container--modr" data-resources='[{"paths":["modr.demo.polyfill.js"]}]' data-modr='[{"name": "Demo", "module": "Polyfill"}]' data-test="(function(){return false;})">
+        NOT loading modr plugin: Demo:Polyfill, because of test pattern
     </div>
 
     <div class="custom container container--legacy" data-resources='[{"paths":["jquery.boilerplate.js"], "base": "vendor/"}, {"paths":["custom.css"], "base": "vendor/"}]' data-init="(function($elm) { $elm.boilerplate(); })">
         Loading legacy plugin: vendor/jquery.boilerplate.js
     </div>
 
+	<div class="custom container container--legacy" data-resources='[{"paths":["jquery.boilerplate.js"], "base": "##vendor"}, {"paths":["custom.css"], "base": "##vendor"}]' data-options='{"foo":"baz","quote":"text with \"quotes\""}' data-init="(function($elm) { $elm.boilerplate($elm.data('options')); })">
+		Loading legacy plugin: vendor/jquery.boilerplate.js with baseMap "##vendor"
+	</div>
+
     <div class="custom container container--legacy" data-test="(function(){return false;})" data-resources='[{"paths":["jquery.boilerplate.js"], "base": "vendor/"}, {"paths":["custom.css"], "base": "vendor/"}]' data-init="(function($elm) { $elm.boilerplate(); })">
         NOT loading legacy plugin: vendor/jquery.boilerplate.js
     </div>
 
     <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
-    <script src="dist/js/modr.loader.js"></script>
-    <!-- <script src="dist/js/modr.myplugin.base.js"></script> -->
+    <script src="dist/js/modr.core.loader.js"></script>
+    <!--<script src="dist/js/modr.demo.base.js"></script>-->
+	<!--<script src="dist/js/modr.demo.module.js"></script>-->
 
     <script>
-        Modr.Loader.base = 'dist/js/';
+        Modr.Core.Loader.base = 'dist/js/';
+		Modr.Core.Loader.baseMap = {
+			'##vendor': 'vendor/',
+			'##distjs': 'dist/js/'
+		};
 
         // load all elements with data-modr attribute
-        Modr.Loader.initPlugins();
+        Modr.Core.Loader.initPlugins();
 
         // init specific plugin
         $('.custom').each(function() {
-            Modr.Loader.initPlugin( $(this) );
+            Modr.Core.Loader.initPlugin( $(this) );
         });
     </script>
 </body>
