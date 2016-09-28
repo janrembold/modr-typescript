@@ -6,7 +6,7 @@ var Modr;
     var Demo;
     (function (Demo) {
         var Base = (function () {
-            function Base() {
+            function Base($element, options) {
                 this.options = {
                     foo: 'bar'
                 };
@@ -54,6 +54,8 @@ var Modr;
                         }
                     }
                 };
+                this.$element = $element;
+                this.options = $.extend({}, this.options, options);
             }
             /**
              * default init method

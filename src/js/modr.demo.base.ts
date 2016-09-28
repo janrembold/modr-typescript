@@ -56,6 +56,11 @@ namespace Modr.Demo {
 			}
 		};
 
+		constructor($element:JQuery, options) {
+			this.$element = $element;
+			this.options = $.extend({}, this.options, options);
+		}
+
 		/**
 		 * default init method
 		 */

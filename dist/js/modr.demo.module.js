@@ -5,8 +5,12 @@ var Modr;
     var Demo;
     (function (Demo) {
         var Module = (function () {
-            function Module() {
-                this.options = {};
+            function Module($element, options) {
+                this.options = {
+                    var1: true
+                };
+                this.$element = $element;
+                this.options = $.extend({}, this.options, options);
             }
             Module.prototype.init = function () {
                 console.log('init Modr:Demo:Module');

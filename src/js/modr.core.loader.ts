@@ -146,21 +146,9 @@ namespace Modr.Core {
 						let module = config.modr[i].module;
 
 						if (Modr[name] && Modr[name][module]) {
-
-							// inject jquery boilerplate defaults
-							$.extend(Modr[name][module].prototype, {
-								$element: $element,
-								_modrExtend: function () {
-									let self = this;
-									// extend defaults with component options
-									self.options = $.extend({}, self.options, config.options);
-									return self;
-								}
-							});
-
-							// instantiate modr plugin and init/extend boilerplate
-							let myInstance = new Modr[name][module]($element, {});
-							myInstance._modrExtend().init();
+							// instantiate modr plugin and init boilerplate
+							let myInstance = new Modr[name][module]($element, config.options);
+							myInstance.init();
 						}
 					}
 				}
