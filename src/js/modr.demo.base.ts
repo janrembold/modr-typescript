@@ -5,8 +5,8 @@
 namespace Modr.Demo {
 	export class Base implements Modr.Interface.JQueryPlugin {
 
-		public _$el:JQuery;
-		public _options = {
+		public $element:JQuery;
+		public options = {
 			foo: 'bar'
 		};
 
@@ -61,8 +61,13 @@ namespace Modr.Demo {
 		 */
 		public init():void {
 			let self = this;
-			self._$el.append(' => Done - Option "foo" = "' + self._options.foo + '"');
-			Modr.Core.Loader.load(self._dependencies.testConfig, self._$el);
+			self.$element.append(' => Done - Option "foo" = "' + self.options.foo + '"');
+
+			Modr.Core.Loader.load(self._dependencies.testConfig, self.$element);
+		}
+
+		public test(value: number = 123) : void {
+
 		}
 
 		/**

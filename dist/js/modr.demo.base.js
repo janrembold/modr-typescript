@@ -7,7 +7,7 @@ var Modr;
     (function (Demo) {
         var Base = (function () {
             function Base() {
-                this._options = {
+                this.options = {
                     foo: 'bar'
                 };
                 this._dependencies = {
@@ -60,8 +60,11 @@ var Modr;
              */
             Base.prototype.init = function () {
                 var self = this;
-                self._$el.append(' => Done - Option "foo" = "' + self._options.foo + '"');
-                Modr.Core.Loader.load(self._dependencies.testConfig, self._$el);
+                self.$element.append(' => Done - Option "foo" = "' + self.options.foo + '"');
+                Modr.Core.Loader.load(self._dependencies.testConfig, self.$element);
+            };
+            Base.prototype.test = function (value) {
+                if (value === void 0) { value = 123; }
             };
             /**
              * default destroy method
