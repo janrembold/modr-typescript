@@ -111,16 +111,17 @@ var Modr;
                             if (Modr[name_1] && Modr[name_1][module]) {
                                 // inject jquery boilerplate defaults
                                 $.extend(Modr[name_1][module].prototype, {
-                                    _$el: $element,
-                                    __modrExtend: function () {
+                                    $element: $element,
+                                    _modrExtend: function () {
+                                        var self = this;
                                         // extend defaults with component options
-                                        this._options = $.extend({}, this._options, config.options);
-                                        return this;
+                                        self.options = $.extend({}, self.options, config.options);
+                                        return self;
                                     }
                                 });
                                 // instantiate modr plugin and init/extend boilerplate
                                 var myInstance = new Modr[name_1][module]($element, {});
-                                myInstance.__modrExtend().init();
+                                myInstance._modrExtend().init();
                             }
                         }
                     }
