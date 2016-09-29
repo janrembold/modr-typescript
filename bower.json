@@ -1,0 +1,25 @@
+{
+  "name": "modr-typescript",
+  "description": "",
+  "main": "dist/js/modr.core.loader.js",
+  "authors": [
+    "Jan Rembold <janrembold@gmail.com>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "jQuery",
+    "TypeScript",
+    "Boilerplate",
+    "es5",
+    "es6",
+    "conditional",
+    "loading"
+  ],
+  "homepage": "https://github.com/janrembold/modr-typescript",
+  "ignore": [
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
