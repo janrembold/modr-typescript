@@ -9,7 +9,7 @@ gulp.task('typescript', function () {
         .pipe(ts({
             noImplicitAny: false,
             // out: 'index.es5.js',
-            // declaration: true,
+            declaration: true,
             // module: 'umd',
             target: 'ES5'
         }))
