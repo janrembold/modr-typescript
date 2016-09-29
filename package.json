@@ -6,12 +6,19 @@
   "dependencies": {},
   "devDependencies": {
     "gulp": "^3.9.1",
-    "gulp-connect": "^5.0.0",
     "gulp-typescript": "^2.13.6"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "MIT"
+  "author": "Jan Rembold <janrembold@gmail.com>",
+  "license": "MIT",
+  "keywords": [
+    "jQuery",
+    "TypeScript",
+    "Boilerplate",
+    "es5",
+    "es6",
+    "conditional loading"
+  ]
 }
