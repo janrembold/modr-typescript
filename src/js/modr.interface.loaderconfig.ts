@@ -1,18 +1,18 @@
 ///<reference path="../declaration/jquery.d.ts"/>
 
 namespace Modr.Interface {
-    interface LoaderConfigDefault {
+    export interface LoaderConfigDefault {
         init?: ($element?: JQuery) => void;
         test?: () => boolean;
         options?: Object;
     }
 
-    interface LoaderConfigModr {
+	export interface LoaderConfigModr {
         name: string;
         module: string;
     }
 
-    interface LoaderConfigLegacy {
+	export interface LoaderConfigLegacy {
         paths: Array<string>;
         base?: string;
         test?: () => boolean;
